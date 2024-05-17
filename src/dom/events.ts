@@ -68,9 +68,9 @@ export function addListeners(useCases: UseCases): () => void {
   onDocument('touchend', toggleOnTouch, options)
   onDocument('click', toggleOnTouch, options)
   onDocument('keyup', dismissOnEscape, options)
-  onDocument('gestureend', throttledReposition, options)
-  onWindow('scroll', throttledReposition, options)
-  onWindow('resize', throttledResize, options)
+  onDocument('gestureend', throttledReposition, { ...options, passive: true })
+  onWindow('scroll', throttledReposition, { ...options, passive: true })
+  onWindow('resize', throttledResize, { ...options, passive: true })
   delegate('mouseover', SELECTOR_FOOTNOTE, showOnHover, options)
   delegate('mouseout', SELECTOR_FOOTNOTE, hideOnHover, options)
 
